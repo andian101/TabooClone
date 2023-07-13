@@ -5,7 +5,8 @@
     "paths": {
       "src/*": ["./src/*"],
       "Pages/*": ["./Pages/*"],
-      "Models/*": ["./Models/*"]
+      "Models/*": ["./Models/*"],
+      "hooks/*": ["./hooks/*"]
     }
   }
 }

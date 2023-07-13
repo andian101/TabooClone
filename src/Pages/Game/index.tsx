@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {useRoute, RouteProp} from '@react-navigation/native';
-import {SafeAreaView, ScrollView} from 'react-native';
-import GameView from './Game';
-import PlayerView from './Players';
+import React, { useState, useEffect } from "react";
+import { useRoute, RouteProp } from "@react-navigation/native";
+import { SafeAreaView, ScrollView } from "react-native";
+import GameView from "./Game";
+import PlayerView from "./Players";
 
 function GamePage(): JSX.Element {
-  const [gameId, setGameId] = useState('');
-  const route: RouteProp<{params: {id: string}}, 'params'> = useRoute();
+  const [gameId, setGameId] = useState("");
+  const route: RouteProp<{ params: { id: string } }, "params"> = useRoute();
 
   useEffect(() => {
     if (route?.params?.id) {
@@ -20,13 +20,7 @@ function GamePage(): JSX.Element {
 
   return (
     <SafeAreaView>
-      <ScrollView>
-        {gameId ? (
-          <GameView id={gameId} />
-        ) : (
-          <PlayerView setGameId={setGameId} />
-        )}
-      </ScrollView>
+      <ScrollView>{gameId ? <GameView id={gameId} /> : <PlayerView setGameId={setGameId} />}</ScrollView>
     </SafeAreaView>
   );
 }

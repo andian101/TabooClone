@@ -1,24 +1,16 @@
-import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  Button,
-  TextInput,
-  Text,
-  View,
-} from 'react-native';
-import {useRealm} from '../../Models';
-import Realm from 'realm';
-import {styles} from './styles';
+import React, { useState } from "react";
+import { SafeAreaView, ScrollView, Button, TextInput, Text, View } from "react-native";
+import { useCreate } from "hooks";
+import { styles } from "./styles";
 
 type PlayersType = {
   setGameId: (id: unknown) => void;
 };
 
-function Players({setGameId}: PlayersType): JSX.Element {
-  const [gameName, setGameName] = useState('');
-  const [players, setPlayers] = useState(['']);
-  const realm = useRealm();
+function Players({ setGameId }: PlayersType): JSX.Element {
+  const [gameName, setGameName] = useState("");
+  const [players, setPlayers] = useState([""]);
+  const { createGame } = useCreate();
 
   const onChangeText = (index: number, name: string): void => {
     const nextPlayers = players.map((el, i) => {
@@ -28,23 +20,8 @@ function Players({setGameId}: PlayersType): JSX.Element {
     return setPlayers(nextPlayers);
   };
 
-  const createGame = async () => {
-    const date = new Date();
-    const gameId = new Realm.BSON.ObjectId();
-    await realm.write(() => {
-      realm.create('Game', {
-        _id: gameId,
-        name: gameName,
-        players: players.map(name => ({
-          _id: new Realm.BSON.ObjectId(),
-          name,
-          score: 0,
-        })),
-        dateCreated: date,
-        lastUpdated: date,
-      });
-    });
-
+  const createTheGame = async () => {
+    const gameId = await createGame(players, gameName);
     return setGameId(gameId);
   };
 
@@ -78,11 +55,8 @@ function Players({setGameId}: PlayersType): JSX.Element {
             ))}
           </View>
 
-          <Button
-            title="Add player"
-            onPress={() => setPlayers([...players, ''])}
-          />
-          <Button title="Start Game" onPress={createGame} />
+          <Button title="Add player" onPress={() => setPlayers([...players, ""])} />
+          <Button title="Start Game" onPress={createTheGame} />
         </View>
       </ScrollView>
     </SafeAreaView>

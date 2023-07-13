@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Landing, Game, PreviousGames, Dev} from '../Pages';
+import {Landing, Game, PreviousGames, Dev} from 'Pages';
 import {MainStackNavigatorParamList, Destination} from './types';
 
 const Stack = createNativeStackNavigator<MainStackNavigatorParamList>();
