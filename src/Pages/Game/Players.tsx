@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { SafeAreaView, ScrollView, Button, TextInput, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
+import { TextInput, Text, Button } from "react-native-paper";
 import { useCreate } from "hooks";
 import { styles } from "./styles";
 
@@ -30,33 +31,32 @@ function Players({ setGameId }: PlayersType): JSX.Element {
       <ScrollView>
         <View style={styles.sectionContainer}>
           <View>
-            <Text>What's the name of the game?</Text>
+            <Text variant="labelLarge">What's the name of the game?</Text>
             <TextInput
-              style={styles.input}
+              // keyboardType="numeric"
+              // label={`${el.name}`}
               placeholder="Game Name"
               onChangeText={e => setGameName(e)}
               value={gameName}
             />
           </View>
           <View>
-            <Text>Players</Text>
             {players.map((name, index) => (
-              <View key={index}>
-                <Text>
+              <View style={styles.inputGroup} key={index}>
+                <Text variant="labelLarge">
                   Player {index + 1} {name && `: ${name}`}
                 </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Name"
-                  onChangeText={e => onChangeText(index, e)}
-                  value={name}
-                />
+                <TextInput placeholder="Name" onChangeText={e => onChangeText(index, e)} value={name} />
               </View>
             ))}
           </View>
 
-          <Button title="Add player" onPress={() => setPlayers([...players, ""])} />
-          <Button title="Start Game" onPress={createTheGame} />
+          <Button style={styles.buttons} mode="contained-tonal" onPress={() => setPlayers([...players, ""])}>
+            Add player
+          </Button>
+          <Button style={styles.buttons} mode="contained" onPress={createTheGame}>
+            Start Game
+          </Button>
         </View>
       </ScrollView>
     </SafeAreaView>

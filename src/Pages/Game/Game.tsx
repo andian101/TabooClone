@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import { styles } from "./styles";
 import { useObject, Game, useRealm } from "Models";
+import { Text, TextInput } from "react-native-paper";
 
 type PlayersType = {
   id: string;
@@ -26,22 +27,19 @@ function GamePage({ id }: PlayersType): JSX.Element {
     });
   };
 
-  console.log(gameData.players[0].score);
-
   return (
     <SafeAreaView>
       <ScrollView keyboardShouldPersistTaps="always">
         <View style={styles.sectionContainer}>
           <View>
-            <Text>Welcome to the game {gameData.name}!!</Text>
-            <Button title="Cleek me" onPress={() => updateScore} />
+            <Text variant="headlineSmall">{gameData.name}!!</Text>
             {gameData.players.map((el, index) => (
-              <View key={String(el._id)}>
-                <Text>{el.name}</Text>
+              <View style={styles.score} key={String(el._id)}>
                 <TextInput
+                  mode="outlined"
                   keyboardType="numeric"
-                  style={styles.input}
-                  placeholder={`${el.name} score`}
+                  label={`${el.name}`}
+                  placeholder={`${el.name}`}
                   onChangeText={e => updateScore(e, index)}
                   value={el.score}
                 />

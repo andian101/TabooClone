@@ -1,5 +1,5 @@
 import Game from "./Game";
-import Player, { OldPlayer } from "./Player";
+import Player from "./Player";
 import Realm from "realm";
 
 import { createRealmContext } from "@realm/react";

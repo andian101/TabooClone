@@ -1,6 +1,8 @@
 import React from "react";
-import { Text, Button, SafeAreaView, ScrollView, View } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
+import { Button } from "react-native-paper";
 import { useRealm } from "Models";
+import { styles } from "./styles";
 
 function DevPage(): JSX.Element {
   const realm = useRealm();
@@ -11,12 +13,11 @@ function DevPage(): JSX.Element {
 
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView style={styles.sectionContainer}>
         <View>
-          <Button title="Get Realm Location" onPress={getRealm} />
-        </View>
-        <View>
-          <Text>{realm.path}</Text>
+          <Button mode="contained" onPress={getRealm}>
+            Get Realm Location
+          </Button>
         </View>
       </ScrollView>
     </SafeAreaView>

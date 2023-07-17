@@ -5,23 +5,13 @@ export const styles = StyleSheet.create({
     marginTop: 32,
     paddingHorizontal: 24,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "600",
+  score: {
+    marginVertical: 10,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: "400",
+  buttons: {
+    marginVertical: 20,
   },
-  highlight: {
-    fontWeight: "700",
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderColor: "black",
+  inputGroup: {
+    marginVertical: 10,
   },
 });

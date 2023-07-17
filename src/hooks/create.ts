@@ -14,7 +14,7 @@ export const useCreate = () => {
         players: players.map(name => ({
           _id: new Realm.BSON.ObjectId(),
           name,
-          score: 0,
+          score: "",
         })),
         dateCreated: date,
         lastUpdated: date,
